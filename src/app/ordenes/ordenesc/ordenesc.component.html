@@ -1,0 +1,31 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">Ordenes</div>
+    <div class="card-body text-primary">
+      <h5 class="card-title">Listado de ordenes</h5>
+    </div>
+  
+   
+    <table class="table table-bordered table-striped" >
+      <thead>
+        <tr>
+          <th>Codigo</th>
+          <th>fecha</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let orden of ordenes1">
+          <td>{{orden.id}}</td>
+          <td>{{orden.fecha | date:"EEEE dd, MMMM yyyy"}}</td>
+          <td>
+            <button type="button" name="editar" 
+            [routerLink]="['/ordenes/ordarti/ordarti',orden.id,idCliente]"
+              class="btn btn-rounded btn-primary"> articulos</button>
+          </td>
+
+        </tr>
+      </tbody>
+  
+    </table>
+  
+  </div>

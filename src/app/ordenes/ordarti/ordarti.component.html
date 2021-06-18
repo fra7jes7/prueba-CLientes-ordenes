@@ -1,0 +1,28 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">Orden</div>
+    <div class="card-body text-primary">
+      <h5 class="card-title">Articulos de la orden</h5>
+    </div>
+  
+   
+    <table class="table table-bordered table-striped" >
+      <thead>
+        <tr>
+          <th>Codigo</th>
+          <th>fecha</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let art of articulo">
+          <td>{{art.codigo}}</td>
+          <td>{{art.nombre}}</td>
+          <td>{{art.precioUnitario}}</td>
+                   
+
+        </tr>
+      </tbody>
+  
+    </table>
+  
+  </div>

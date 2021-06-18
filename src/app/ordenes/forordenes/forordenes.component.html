@@ -1,0 +1,66 @@
+ 
+  <div class="card bg-dark text-white">
+    <div class="card-header">Ordenes</div>
+    <div class="card-body">
+  
+      <form #clienteForm="ngForm">
+
+        <div class="form-group row">
+          <label for="nombre" class="col-form-label col-sm-2">Fecha</label>
+          <div class="col-sm-6">
+            <input type="date" class="form-control" 
+                    [(ngModel)]="fecha"
+                    name="Fecha"
+                    #cliente="ngModel">
+                                 
+  
+          </div>
+        </div>
+
+        
+        <div class="form-group row">
+            <label for="cliente" class="col-form-label col-sm-2">Cliente</label>
+            <div class="col-sm-6" >
+                <select class="form-select" aria-label="Default select example" 
+                        class="form-control"
+                        [(ngModel)]="clienteSelect.id"
+                        name="cliente"
+                        #cliente="ngModel">
+                    <option selected value="1">Seleccione</option>
+                    <option   *ngFor="let cliente of clientes" 
+                               value="{{cliente.id}}">
+                            {{cliente.nombre }} {{cliente.apellido }}                        
+                    </option>               
+                </select>
+          
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="articulofor" class="col-form-label col-sm-2">Articulos</label>
+            <div class="col-sm-6" >
+
+                <select class="select" multiple class="form-control"
+                        [(ngModel)]="articulosSelect"
+                        name="articulosL"
+                        #articulosL="ngModel">
+                    <option   *ngFor="let art of articulo" 
+                               value="{{art.codigo}}">
+                            {{art.nombre }}                        
+                    </option>               
+                </select>                  
+          
+            </div>
+        </div>
+        
+        
+        <button class="btn btn-primary" role="button" (click)='crearOrden()' 
+        >ingresar</button>
+        
+  
+
+      </form>
+  
+    </div>
+  </div>

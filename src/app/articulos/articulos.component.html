@@ -1,0 +1,38 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">Articulos</div>
+    <div class="card-body text-primary">
+      <h5 class="card-title">Listado de articulos</h5>
+    </div>
+  
+    <div class="my-2 text-left">
+      <button class="btn btn-rounded btn-primary" 
+                type="button" 
+                [routerLink]="['/articulos/for-articulos']">
+    Crear Articulos</button>
+    </div>
+  
+    <div *ngIf="articulo?.length == 0" class="alert alert-info">
+      No hay registros en la base de datos
+    </div>
+  
+    <table class="table table-bordered table-striped" *ngIf="articulo?.length>0">
+      <thead>
+        <tr>
+          <th>codigo</th>
+          <th>nombre</th>
+          <th>precio unitario</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let arti of articulo">
+          <td>{{arti.codigo}}</td>
+          <td>{{arti.nombre}}</td>
+          <td>{{arti.precioUnitario}}</td>
+        
+        </tr>
+      </tbody>
+  
+    </table>
+  
+  </div>
