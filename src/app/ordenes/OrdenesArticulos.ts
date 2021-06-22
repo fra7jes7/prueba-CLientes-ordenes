@@ -1,6 +1,6 @@
 export class OrdenesArticulos {
     codigo: number;
+    idOrdenes: number;
 	idArticulo: number;
-    idCliente: number;
-    
+    cantidad:number;
 }

@@ -51,7 +51,7 @@ export class OrdartiComponent implements OnInit {
 
             this.ordenesArticulosVal.forEach(element => {
 
-              this.ordenesService.getArticulosId(element.idCliente)
+              this.ordenesService.getArticulosId(element.idOrdenes)
               .subscribe(json => {
                 console.log('json:',json);
                 this.articulo.push(json);

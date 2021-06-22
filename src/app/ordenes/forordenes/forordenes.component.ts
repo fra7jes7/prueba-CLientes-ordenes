@@ -5,6 +5,7 @@ import { Articulo } from '../../articulos/Articulo';
 import { OrdenessService } from '../ordeness.service';
 import { Ordenes } from '../Ordenes';
 import { OrdenesArticulos } from '../OrdenesArticulos';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-forordenes',
@@ -17,6 +18,8 @@ export class ForordenesComponent implements OnInit {
 
   public articulo: Articulo[];
 
+  public articulo1: Articulo[] = [];
+
   public articulosSelect: string[]=[];
 
   public fecha: Date;
@@ -25,6 +28,10 @@ export class ForordenesComponent implements OnInit {
   public ordenesIng: Ordenes = new Ordenes;
 
   public ordenArt: OrdenesArticulos = new OrdenesArticulos;
+
+  
+
+  public stock: number=0;
  
 
   constructor( private clienteService: ClienteService,
@@ -52,24 +59,54 @@ export class ForordenesComponent implements OnInit {
     console.log('articulos',this.articulosSelect)
     console.log('fecha',this.fecha)
 
-    this.ordenes.fecha = this.fecha;
-    this.ordenes.idCliente = this.clienteSelect.id;
+    //consultar stock
 
-    this.ordenesService.create(this.ordenes)
+    
+    
+
+    this.ordenesService.getArticulosAll()
     .subscribe(json => 
-      {this.ordenesIng=json;
-        console.log('Retor>',this.ordenesIng.id);
+      {this.articulo1=json;
+        this.articulo1.forEach(elementbase => {
+
+          this.articulosSelect.forEach(elementSe => {
+            // if(){
+              console.log('id--arti',elementSe);
+            // }
+      
+          });
+          
+        });
         
-        this.articulosSelect.forEach(element => {
-        
-        this.ordenArt.idCliente=Number(element);
-        this.ordenArt.idArticulo = this.ordenesIng.id;
-        this.ordenesService.createOrdenesArticulos(this.ordenArt)
+        });
+
+
+        this.ordenes.fecha = this.fecha;
+        this.ordenes.idCliente = this.clienteSelect.id;
+    
+        this.ordenesService.create(this.ordenes)
         .subscribe(json => 
-          console.log(json)
-          );
-        })
-      });
+          {this.ordenesIng=json;
+            console.log('Retor>',this.ordenesIng.id);
+            
+            this.articulosSelect.forEach(element => {
+            
+            this.ordenArt.idArticulo=Number(element);
+            this.ordenArt.idOrdenes = this.ordenesIng.id;
+            this.ordenArt.cantidad = this.stock;
+
+            this.ordenesService.createOrdenesArticulos(this.ordenArt)
+            .subscribe(json => {
+
+              console.log(json);
+              swal.fire( `${json.mensaje}`);
+            }
+           
+              );
+            })
+          });
+
+
 
     
   }

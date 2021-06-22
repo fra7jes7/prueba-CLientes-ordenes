@@ -61,8 +61,8 @@ export class OrdenessService {
     );
   }
 
-  createOrdenesArticulos(orden: OrdenesArticulos): Observable<OrdenesArticulos> {
-    return this.http.post<OrdenesArticulos>(this.urlEndPoint4, orden, { headers: this.httpHeaders })
+  createOrdenesArticulos(orden: OrdenesArticulos): Observable<any> {
+    return this.http.post<any>(this.urlEndPoint4, orden, { headers: this.httpHeaders })
     .pipe(
       catchError(e => {
 
